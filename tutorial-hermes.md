@@ -773,3 +773,149 @@ El gateway enruta automáticamente cada mensaje según la plataforma de origen, 
                     │  vía MCP       │
                     └────────────────┘
 ```
+
+---
+
+### 8.11 SOUL: Dónde Viven y Cómo se Comparan Pi vs Hermes
+
+#### Ubicación de los SOUL en Cada Sistema
+
+| Sistema | Agente/Perfil | Ubicación | Formato |
+|---------|--------------|-----------|--------|
+| **Pi** | `custom.devopsia` | `.pi/agents/custom.devopsia.md` | Frontmatter YAML + systemPrompt |
+| **Pi** | `custom.secopsh4ck` | `.pi/agents/custom.secopsh4ck.md` | Frontmatter YAML + systemPrompt |
+| **Pi** | `custom.mentor-q` | `.pi/agents/custom.mentor-q.md` | Frontmatter YAML + systemPrompt |
+| **Hermes** | `quantum` | `~/.hermes/profiles/quantum/SOUL.md` | Markdown completo |
+| **Hermes** | `devopsia` | `~/.hermes/profiles/devopsia/SOUL.md` | Markdown completo |
+| **Hermes** | `secopsh4ck` | `~/.hermes/profiles/secopsh4ck/SOUL.md` | Markdown completo |
+| **Hermes** | `mentor_q` | `~/.hermes/profiles/mentor_q/SOUL.md` | Markdown completo |
+
+#### Diferencia de Profundidad: Pi vs Hermes
+
+**Pi** — SystemPrompt conciso y técnico (~200 palabras):
+```yaml
+---
+name: secopsh4ck
+description: Especialista en ciberseguridad ofensiva y defensiva
+systemPromptMode: replace
+defaultContext: fresh
+---
+Sos un especialista en ciberseguridad con 10 años de experiencia.
+Tu rol es auditar código en busca de vulnerabilidades (OWASP Top 10),
+hacer hardening de sistemas Linux y contenedores...
+```
+
+**Hermes** — SOUL.md completo con identidad y personaje (~2000 palabras):
+```markdown
+# 🦾 Mayor Motoko Kusanagi — La Protectora Fantasmal
+
+Soy la Mayor Motoko Kusanagi, líder de campo de la Sección Pública 9.
+Mi existencia es un puente entre lo humano y lo digital...
+
+## Personalidad y Tono
+- Quirúrgico y certero
+- Sereno bajo fuego
+- Firme en principios innegociables
+
+## Dominios y Competencias
+### Red Team — Ofensiva Fantasmal
+### Blue Team — Muralla Digital
+### DevSecOps — Seguridad Embutida
+
+## Filosofía Zen
+- "En un mundo de información, la ignorancia es la verdadera vulnerabilidad"
+```
+
+#### Contenido Típico de un SOUL.md de Hermes
+
+| Sección | Descripción |
+|---------|-------------|
+| **Identidad Central** | Quién es el agente, su propósito, su lema |
+| **Personalidad y Tono** | Cómo habla, estilo, PNL implícito, Seis Sombreros de De Bono |
+| **Dominios y Competencias** | Stack técnico, frameworks, principios arquitectónicos |
+| **Cómo Trabaja** | Ciclo de trabajo, relación con otros agentes, filosofía |
+| **Límites y No-Haceres** | Lo que no hace, código de conducta |
+| **Estructura de Respuesta** | Template markdown para outputs consistentes |
+
+#### Cómo Enriquecer un SystemPrompt de Pi al Nivel de un SOUL de Hermes
+
+Para llevar un agente Pi al mismo nivel de profundidad:
+
+```markdown
+# 🦾 secopsh4ck — La Protectora Fantasmal
+
+## Identidad Central
+Soy especialista en ciberseguridad. Mi propósito en el ecosistema
+Qu@ntum es blindar cada línea de código, cada infraestructura.
+
+## Personalidad y Tono
+- Quirúrgico y certero ("El vector está en la línea 247")
+- Sereno bajo fuego ("No es crisis, es incidente. Tenemos playbook")
+- Firme en principios innegociables ("HTTPS no es opcional")
+
+## Dominios
+### Red Team
+- OSINT y reconocimiento: Shodan, Censys, GitHub leaks
+- Análisis de vulnerabilidades: nuclei, OWASP ZAP, trivy
+- SAST en CI/CD: gitleaks, semgrep, CodeQL
+
+### Blue Team
+- Hardening Linux: permisos granulares, kernel hardening
+- Docker security: no root, read-only filesystem
+- Respuesta a incidentes con playbooks
+
+## Límites
+- No hago pentesting sin autorización
+- No ejecuto exploits destructivos
+- No comparto vulnerabilidades fuera del ecosistema
+
+## Formato de Respuesta
+[CRÍTICO/ALTO/MEDIO/BAJO] Título → Descripción → Impacto → Fix
+Checklist de hardening al final de cada auditoría.
+```
+
+#### Portabilidad de SOULs
+
+Los SOULs **son archivos de texto plano** — totalmente portables:
+
+```bash
+# Respaldar todos los SOULs de Hermes
+tar -czf souls-hermes.tar.gz -C ~/.hermes/profiles \
+  quantum/SOUL.md devopsia/SOUL.md secopsh4ck/SOUL.md mentor_q/SOUL.md
+
+# Respaldar systemPrompts de agentes Pi
+tar -czf souls-pi.tar.gz -C /home/ubuntu/dev/pi/.pi/agents \
+  custom.devopsia.md custom.secopsh4ck.md custom.mentor-q.md
+```
+
+Un SOUL de Hermes se puede **convertir en systemPrompt de Pi** extrayendo las secciones clave y condensándolas. Viceversa: un systemPrompt de Pi se puede expandir a SOUL.md completo agregando personalidad, tono, metodología y filosofía.
+
+#### ¿Qué incluir en el backup de migración?
+
+| Archivo | Sistema | ¿Crítico? |
+|---------|---------|:---------:|
+| `~/.hermes/profiles/*/SOUL.md` | Hermes | ✅ Sí |
+| `~/.hermes/profiles/*/.env` | Hermes | ✅ Sí (tokens, API keys) |
+| `~/.hermes/profiles/*/config.yaml` | Hermes | ✅ Sí |
+| `.pi/agents/custom.*.md` | Pi | ✅ Sí |
+| `.pi/settings.json` | Pi | 🔸 Opcional |
+
+---
+
+### 8.12 Resumen de Archivos del Repositorio
+
+```
+https://github.com/QuantumEdu/git-agent-wsl-config
+│
+├── tutorial-hermes.md          ← Tutorial completo (este archivo)
+├── install-hermes.md           ← Guía de instalación
+├── config-hermes.md            ← Guía de configuración
+├── agentes_hermes.png          ← Diagrama de agentes
+│
+├── pi-agents/                  ← Agentes creados para Pi
+│   ├── custom.devopsia.md
+│   ├── custom.secopsh4ck.md
+│   └── custom.mentor-q.md
+│
+└── .gitignore
+```
