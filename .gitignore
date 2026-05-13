@@ -1,0 +1,13 @@
+# Sensitive files - never commit
+auth.json
+*.pid
+sessions/
+mcp-cache.json
+run-history.jsonl
+
+# Node modules and dependencies
+node_modules/
+npm/
+
+# Intercom runtime
+intercom/

@@ -1,0 +1,37 @@
+{
+  "lastChangelogVersion": "0.74.0",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "deepseek-v4-pro",
+  "defaultThinkingLevel": "high",
+  "showHardwareCursor": true,
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "enableInstallTelemetry": false,
+  "theme": "dark",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:pi-mcp-adapter",
+    "npm:pi-web-access",
+    "npm:pi-memory-md",
+    "npm:@devkade/pi-plan",
+    "npm:@juanibiapina/pi-powerbar",
+    {
+      "source": "git:github.com/tmustier/pi-extensions",
+      "extensions": [
+        "-arcade/picman.ts",
+        "-arcade/ping.ts",
+        "-arcade/spice-invaders.ts",
+        "-arcade/tetris.ts",
+        "-arcade/mario-not/mario-not.ts"
+      ]
+    },
+    "npm:pi-manage-todo-list",
+    "npm:gentle-pi",
+    "npm:gentle-engram",
+    "npm:pi-intercom",
+    "npm:pi-lens",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:@juicesharp/rpiv-ask-user-question"
+  ]
+}
