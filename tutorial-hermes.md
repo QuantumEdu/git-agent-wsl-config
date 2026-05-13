@@ -594,3 +594,182 @@ Este mismo enfoque aplica para `devopsia` y `mentor_q`, cada uno con su personal
 
 14:00  Hermes:quantum (cron) → Corre tests de integración, reporta OK.
 ```
+
+---
+
+### 8.10 Gateway de Mensajería: ¿Qué Plataforma Elegir?
+
+Hermes soporta **17+ plataformas** de mensajería vía gateway. Acá las 5 mejores ordenadas por **facilidad + seguridad**:
+
+#### Comparativa Rápida
+
+| # | Plataforma | Facilidad | Seguridad | Requisito principal | Ideal para |
+|---|-----------|-----------|-----------|-------------------|------------|
+| 1 | **Telegram** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Token de @BotFather | Uso personal, notificaciones, comandos |
+| 2 | **Discord** | ⭐⭐⭐⭐ | ⭐⭐⭐ | Bot token + server | Comunidades, equipos de desarrollo |
+| 3 | **Matrix** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Homeserver propio (Opcional E2EE) | Privacidad máxima, self-hosting |
+| 4 | **Signal** | ⭐⭐ | ⭐⭐⭐⭐⭐ | signal-cli daemon | Comunicaciones ultra-seguras |
+| 5 | **WhatsApp** | ⭐⭐ | ⭐⭐⭐ | QR pairing + número de teléfono | Alcance masivo, clientes |
+
+---
+
+#### 1. Telegram 🥇 (Recomendado para empezar)
+
+**La más fácil de todas. 5 minutos para tenerla andando.**
+
+```bash
+# 1. Crear el bot con @BotFather en Telegram
+# 2. Configurar en Hermes
+hermes gateway setup
+# Elegir Telegram, pegar el token
+
+# 3. Iniciar el gateway
+hermes gateway start
+```
+
+| Aspecto | Detalle |
+|---------|--------|
+| **Setup** | Solo necesitás un token de BotFather. Sin infraestructura extra. |
+| **Seguridad** | Bots NO tienen E2E encryption. Los mensajes pasan por servidores de Telegram. Usar allowlist (`TELEGRAM_ALLOWED_USERS`). |
+| **Features** | Mensajes, imágenes, documentos, voice notes, typing indicators, comandos inline. |
+| **Contras** | Sin E2E. Dependencia de servidores de Telegram. |
+| **Costo** | Gratis. |
+
+**Variables de entorno:**
+```bash
+TELEGRAM_BOT_TOKEN=123456:ABC-DEF
+TELEGRAM_ALLOWED_USERS=123456789
+TELEGRAM_HOME_CHANNEL=123456789
+```
+
+---
+
+#### 2. Discord 🥈
+
+**Excelente para equipos de desarrollo. Comunidades, canales, roles.**
+
+| Aspecto | Detalle |
+|---------|--------|
+| **Setup** | Bot token + habilitar Privileged Gateway Intents + invitar bot al server. ~10 min. |
+| **Seguridad** | Sin E2E. Allowlist por user ID. |
+| **Features** | Slash commands nativos, canales, hilos, rich embeds, attachments. |
+| **Contras** | Requiere server configurado. No es para uso personal simple. |
+| **Costo** | Gratis. |
+
+---
+
+#### 3. Matrix 🥉 (Mejor balance seguridad/facilidad)
+
+**Protocolo federado open-source. Con E2E encryption opcional.**
+
+| Aspecto | Detalle |
+|---------|--------|
+| **Setup** | Necesitás un homeserver (propio o matrix.org). Access token o user/password. |
+| **Seguridad** | E2E encryption con `MATRIX_ENCRYPTION=true`. Self-hosted = control total. |
+| **Features** | Mensajes, imágenes, archivos, bridging a otras plataformas. |
+| **Contras** | Setup más complejo que Telegram. Homeserver requiere mantenimiento. |
+| **Costo** | Gratis (matrix.org) o costo de VPS si self-hosted. |
+
+---
+
+#### 4. Signal 🔐 (Máxima seguridad, setup complejo)
+
+**E2E encryption por defecto. Requiere infraestructura adicional.**
+
+| Aspecto | Detalle |
+|---------|--------|
+| **Setup** | Requiere `signal-cli` como daemon HTTP. Instalación + linkeo de cuenta + daemon corriendo. |
+| **Seguridad** | ⭐⭐⭐⭐⭐ E2E por defecto. Señal más segura del mercado para mensajería. |
+| **Features** | Mensajes, typing indicators, attachments. |
+| **Contras** | Setup complejo. Daemon debe correr 24/7. Límites de rate en grupos. |
+| **Costo** | Gratis (señal) + costo de mantener el daemon corriendo. |
+
+**Requisitos:**
+```bash
+# Instalar signal-cli
+# Linux: descargar de https://github.com/AsamK/signal-cli/releases
+# macOS: brew install signal-cli
+# Docker: bbernhard/signal-cli-rest-api
+
+# Linkear cuenta
+signal-cli link -n "HermesAgent"
+
+# Iniciar daemon
+signal-cli --account +TUNUMERO daemon --http 127.0.0.1:8080
+```
+
+**Variables de entorno:**
+```bash
+SIGNAL_HTTP_URL=http://127.0.0.1:8080
+SIGNAL_ACCOUNT=+1234567890
+SIGNAL_ALLOWED_USERS=+1234567890
+```
+
+---
+
+#### 5. WhatsApp 📲 (Alcance masivo, restricciones de Meta)
+
+**La usan todos, pero Meta impone restricciones fuertes.**
+
+| Aspecto | Detalle |
+|---------|--------|
+| **Setup** | QR pairing desde la app de Hermes. Necesitás un número de teléfono. |
+| **Seguridad** | E2E en teoría, pero el bot actúa como cliente no oficial (riesgo de ban). |
+| **Features** | Mensajes, imágenes, documentos. Sesiones de 24h. |
+| **Contras** | **Riesgo de ban** por usar cliente no oficial. Ventana de 24h para responder. Setup frágil. |
+| **Costo** | Gratis, pero con riesgo. |
+
+---
+
+#### Recomendación por Caso de Uso
+
+| Caso de uso | Mejor opción | ¿Por qué? |
+|-------------|-------------|-----------|
+| **Empezar ya, probar el sistema** | Telegram | 5 minutos, sin infraestructura |
+| **Equipo de desarrollo** | Discord | Canales, roles, comandos nativos |
+| **Máxima privacidad** | Signal | E2E, código abierto |
+| **Self-hosting + privacidad** | Matrix | Federado, E2E opcional, control total |
+| **Hablar con clientes/familia** | WhatsApp (con cuidado) | Todos lo tienen, pero riesgoso |
+| **Notificaciones 24/7** | Telegram + cron | Lo más simple para alertas automáticas |
+
+#### Configurar Múltiples Plataformas
+
+Hermes soporta todas simultáneamente:
+
+```bash
+# Configurar varias plataformas
+hermes gateway setup   # Menú interactivo, elegir todas las que quieras
+
+# Ver estado
+hermes gateway status
+
+# Iniciar todo
+hermes gateway start
+```
+
+El gateway enruta automáticamente cada mensaje según la plataforma de origen, manteniendo sesiones separadas por chat.
+
+#### Arquitectura del Gateway
+
+```
+                   ┌──────────────────┐
+                   │  Hermes Gateway  │
+                   │   (always-on)    │
+                   └────────┬─────────┘
+                            │
+        ┌────────┬──────────┼──────────┬────────┐
+        ▼        ▼          ▼          ▼        ▼
+    Telegram  Discord    Matrix    Signal   WhatsApp
+        │        │          │          │        │
+        └────────┴──────────┴──────────┴────────┘
+                            │
+                    ┌───────▼────────┐
+                    │  Hermes Core   │
+                    │  (quantum)     │
+                    └───────┬────────┘
+                            │
+                    ┌───────▼────────┐
+                    │  Pi (Gentleman)│
+                    │  vía MCP       │
+                    └────────────────┘
+```
