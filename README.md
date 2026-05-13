@@ -37,3 +37,7 @@ pi/
 ## Extensiones
 
 Extensiones desde `git:github.com/tmustier/pi-extensions` (arcade deshabilitadas).
+
+## Referencia
+
+- [Skills, Prompts y Extensiones — guía completa](docs/reference.md)
