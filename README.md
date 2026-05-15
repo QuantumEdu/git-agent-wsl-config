@@ -23,14 +23,16 @@ Todos los agentes comparten un alma común definida en [`pi/gentle-ai/support/ag
 
 ```
 pi/                       # Configuración de Pi Coding Agent
-├── settings.json
-├── mcp.json
+├── settings.json          # Settings global (packages, tema, modelo)
+├── mcp.json               # Servidores MCP (Engram)
 ├── agent/
-│   ├── settings.json
-│   ├── models.json
+│   ├── settings.json      # Settings del agente (packages completo)
+│   ├── models.json        # Providers/models custom (Ollama local)
 │   ├── agents/
+│   │   └── python-reviewer.md
 │   ├── skills/
-│   └── git/
+│   │   └── deploy-staging/
+│   └── extensions/        # (en ~/.pi/agent/extensions/ global)
 ├── agents/                # Agentes SDD
 ├── chains/                # Cadenas SDD
 └── gentle-ai/             # Gentle AI (alma compartida + TDD)
@@ -39,32 +41,47 @@ hermes/                    # Configuración de Hermes Agent
 ├── SOUL.md                # Alma del agente principal
 ├── USER.md                # Contexto del usuario Qu@ntum
 ├── profiles/
-│   ├── devopsia/          # DevOpsIA — El Constructor
+│   ├── devopsia/           # DevOpsIA — El Constructor
 │   ├── secopsh4ck/        # Mayor Motoko Kusanagi — La Protectora
-│   └── mentor_q/          # mentor_Q — El Guía
+│   └── mentor_q/           # mentor_Q — El Guía
 ├── skills/
-│   └── image-reader/      # OCR para imágenes
+│   └── image-reader/       # OCR para imágenes
 └── docs/                  # Guías de instalación y uso
 ```
 
 ## Paquetes instalados
 
-- `pi-subagents` — Delegación a subagentes
-- `pi-mcp-adapter` — Adaptador MCP
-- `pi-web-access` — Acceso web y búsqueda
-- `pi-memory-md` — Memoria persistente en markdown
-- `pi-plan` — Planificación
-- `pi-powerbar` — Powerbar
-- `gentle-pi` — Gentle AI harness
-- `gentle-engram` — Memoria Engram
-- `pi-intercom` — Comunicación entre sesiones
-- `pi-lens` — LSP y AST navigation
-- `pi-manage-todo-list` — Gestión de tareas
-- `rpiv-todo` / `rpiv-ask-user-question` — Componentes RPiV
+| Paquete | Versión | Rol |
+|---------|---------|-----|
+| `gentle-pi` | 0.3.0 | Harness de el Gentleman (skills, extensions, prompts) |
+| `gentle-engram` | 0.1.5 | Memoria persistente Engram |
+| `pi-subagents` | 0.24.2 | Delegación a subagentes |
+| `pi-intercom` | 0.6.0 | Comunicación entre sesiones |
+| `pi-mcp-adapter` | 2.5.4 | Adaptador MCP |
+| `pi-web-access` | latest | Acceso web y búsqueda |
+| `pi-memory-md` | latest | Memoria persistente en markdown |
+| `@devkade/pi-plan` | latest | Planificación |
+| `@juanibiapina/pi-powerbar` | latest | Powerbar TUI |
+| `@tmustier/pi-ralph-wiggum` | 0.2.1 | Loops iterativos Ralph Wiggum |
+| `@juicesharp/rpiv-todo` | latest | Gestión de tareas TUI |
+| `@juicesharp/rpiv-ask-user-question` | latest | Cuestionarios TUI |
+| `pi-manage-todo-list` | latest | Gestión de listas de tareas |
+| `pi-lens` | latest | LSP y AST navigation |
+| `@modemdev/glance-pi` | 0.1.0 | Captura de pantalla live |
+| `pi-extensions` (git) | latest | Extensiones TUI (arcade deshabilitadas) |
 
-## Extensiones
+## Extensiones destacadas
 
-Extensiones desde `git:github.com/tmustier/pi-extensions` (arcade deshabilitadas).
+- **gentle-ai.ts** — Core de el Gentleman: system prompt, delegación, SDD
+- **sdd-init.ts** — Inicialización de artefactos SDD
+- **skill-registry.ts** — Registro de skills del proyecto
+- **startup-banner.ts** — Banner de inicio con estado
+- **pi-sidebar-monitor.ts** — Panel de monitoreo para desarrolladores
+- **agent-guidance** — Guía contextual por modo
+- **code-actions** — Acciones de código en TUI
+- **files-widget** — Widget de archivos modificados
+- **usage-extension** — Monitoreo de uso (tokens, tiempo, costos)
+- **session-recap** — Recapitulación de sesión
 
 ## Referencia
 
