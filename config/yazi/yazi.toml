@@ -1,0 +1,22 @@
+#:schema https://yazi-rs.github.io/schemas/yazi.json
+
+[manager]
+show_hidden     = true
+sort_by         = "natural"
+sort_dir_first  = true
+linemode        = "size"
+scrolloff       = 8
+
+[preview]
+tab_size        = 4
+max_width       = 800
+max_height      = 1000
+cache_dir       = ""
+
+[opener]
+edit = [
+	{ run = "nvim %s", desc = "Neovim", for = "unix", block = true },
+]
+
+[tasks]
+image_alloc = 1073741824  # 1GB for image cache

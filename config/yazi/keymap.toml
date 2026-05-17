@@ -1,0 +1,19 @@
+#:schema https://yazi-rs.github.io/schemas/keymap.json
+
+[mgr]
+prepend_keymap = [
+	# Navegación tipo vim (sobreescribe defaults)
+	{ on = "h", run = "leave",               desc = "Go to parent directory" },
+	{ on = "l", run = "enter",               desc = "Enter directory or open file" },
+
+	# Pestañas
+	{ on = [ "T", "t" ], run = "tab_create", desc = "Create a new tab" },
+	{ on = [ "W", "w" ], run = "tab_switch", desc = "Cycle tabs" },
+	{ on = "q", run = "tab_close",           desc = "Close current tab" },
+
+	# Filtro rápido
+	{ on = "f", run = "filter",              desc = "Filter files" },
+
+	# Abrir terminal en directorio actual
+	{ on = "t", run = "shell 'fish' --block", desc = "Open terminal here" },
+]
