@@ -1,0 +1,252 @@
+% --------------------------------------------------------------
+% APA 7ma Edición - Plantilla para Tesis y Documentos Académicos
+% --------------------------------------------------------------
+\documentclass[12pt, a4paper, oneside]{article}
+
+% Paquetes básicos
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{url}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+% Configuración de página APA 7ma
+\usepackage[right=1in, left=1in, top=1in, bottom=1in, includefoot]{geometry}
+
+% --------------------------------------------------------------
+% Portada APA 7ma
+% --------------------------------------------------------------
+\begin{document}
+\begin{titlepage}
+\centering
+\vspace*{0.5in}
+{\large\bfseries Título de la Investigación en Formato APA}\\[0.5in]
+\vfill
+\textbf{Autor 1}$^{1}$, \textbf{Autor 2}$^{2}$, \textbf{Autor 3}$^{3}$\\[0.3in]
+$^{1}$Universidad, Departamento de Ingeniería\\
+$^{2}$Universidad, Departamento de Ciencias\\
+$^{3}$Universidad, Departamento de Investigación\\[0.5in]
+{\small Director: Dr. Nombre del Director}\\[0.3in]
+{\small Co-director: Dr. Nombre del Co-director}\\[0.5in]
+{\small Ciudad, País}\\
+{\small Año 2024}
+\end{titlepage}
+
+% --------------------------------------------------------------
+% Página de aceptación
+% --------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\vspace*{2in}
+\begin{flushright}
+\begin{minipage}{4in}
+\small
+\textbf{Fecha de sustentación:} dd de mes de aaaa\\[0.3in]
+\textbf{Presidente del jurado:} Dr. Nombre\\[0.3in]
+\textbf{Vocal 1:} Dr. Nombre\\[0.3in]
+\textbf{Vocal 2:} Dr. Nombre\\[0.3in]
+\end{minipage}
+\end{flushright}
+
+% --------------------------------------------------------------
+% Abstract - Centrado, negrita
+% --------------------------------------------------------------
+\newpage
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+{\centering\textbf{Abstract}\\[0.2in]}
+\doublespacing
+El resumen estructurado presenta de manera breve y concisa los aspectos
+fundamentales de la investigación. Se estructura en: contexto, objetivo,
+método, resultados y conclusión. El abstract debe contener entre 150 y 250
+palabras.
+
+\medskip
+\textbf{Keywords:} palabra clave 1, palabra clave 2, palabra clave 3, palabra clave 4
+
+% --------------------------------------------------------------
+% Resumen en español
+% --------------------------------------------------------------
+\newpage
+\section*{Resumen}
+\addcontentsline{toc}{section}{Resumen}
+{\centering\textbf{Resumen}\\[0.2in]}
+El resumen en español presenta la misma información que el abstract,
+estructurado de forma similar. Debe indicar el contexto de la investigación,
+el objetivo principal, la metodología utilizada, los resultados obtenidos y
+las conclusiones más relevantes. El rango permitido es de 150 a 250 palabras.
+
+\medskip
+\textbf{Palabras clave:} palabra clave 1, palabra clave 2, palabra clave 3
+
+% --------------------------------------------------------------
+% Tabla de contenidos
+% --------------------------------------------------------------
+\newpage
+\tableofcontents
+
+% --------------------------------------------------------------
+% Lista de figuras y tablas
+% --------------------------------------------------------------
+\newpage
+\listoffigures
+\newpage
+\listoftables
+
+% --------------------------------------------------------------
+% Cuerpo del documento
+% --------------------------------------------------------------
+\newpage
+\selectfont
+\doublespacing
+\parindent=0.75in
+\parskip=0in
+
+% --------------------------------------------------------------
+% Introducción - Sin número, negrita, centrada
+% --------------------------------------------------------------
+\section*{Introducción}
+\addcontentsline{toc}{section}{Introducción}
+La introducción presenta el problema de investigación, el contexto
+teórico y los objetivos del estudio. En formato APA 7ma, la introducción
+no lleva número y se identifica únicamente con el título centrado en negrita.
+
+El problema de investigación se enmarca en el contexto de la disciplina
+y se justifica su importancia (Apellido, Año). Los objetivos deben ser
+claros, medibles y estar alineados con el problema planteado.
+
+% --------------------------------------------------------------
+% Marco Teórico o Antecedentes
+% --------------------------------------------------------------
+\section*{Marco Teórico}
+\addcontentsline{toc}{section}{Marco Teórico}
+El marco teórico presenta las bases conceptuales que sustentan la
+investigación (Apellido, Año). Se estructura de forma lógica y
+coherente, organizando los conceptos de lo general a lo específico.
+
+\subsection*{Antecedentes de la Investigación}
+Los antecedentes muestran investigaciones previas relacionadas con
+el tema. Se presentan en orden cronológico inversal (Apellido, Año).
+
+\subsection*{Bases Teóricas}
+Las bases teóricas proporcionan el fundamento conceptual del estudio.
+
+% --------------------------------------------------------------
+% Metodología
+% --------------------------------------------------------------
+\section*{Metodología}
+\addcontentsline{toc}{section}{Metodología}
+La metodología describe el diseño de investigación, la población,
+muestra, técnicas e instrumentos de recolección de datos, y el
+procedimiento de análisis.
+
+\subsection*{Diseño de Investigación}
+Se especifica el tipo de investigación y su justificación.
+
+\subsection*{Población y Muestra}
+La población objetivo y la técnica de muestreo utilizada.
+
+\subsection*{Técnicas e Instrumentos}
+Los instrumentos de medición con su debida validación.
+
+% --------------------------------------------------------------
+% Resultados
+% --------------------------------------------------------------
+\section*{Resultados}
+\addcontentsline{toc}{section}{Resultados}
+Los resultados se presentan de forma objetiva, sin interpretación.
+Pueden incluir tablas y figuras con caption centrado arriba.
+
+\begin{table}[htbp]
+\centering
+\caption{Resultados del Análisis Descriptivo}
+\begin{tabular}{lcc}
+\toprule
+Variable & Media & DE \\
+\midrule
+Variable 1 & 0.00 & 0.00 \\
+Variable 2 & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% --------------------------------------------------------------
+% Discusión
+% --------------------------------------------------------------
+\section*{Discusión}
+\addcontentsline{toc}{section}{Discusión}
+La discusión interpreta los resultados a la luz de la teoría
+(Apellido, Año). Se comparan con estudios previos y se señalan
+las limitaciones del estudio.
+
+% --------------------------------------------------------------
+% Conclusiones
+% --------------------------------------------------------------
+\section*{Conclusiones}
+\addcontentsline{toc}{section}{Conclusiones}
+Las conclusiones responden a los objetivos planteados. Se presentan
+en orden correlativo y se sugieren investigaciones futuras.
+
+% --------------------------------------------------------------
+% Referencias - APA 7ma - Hanging indent
+% --------------------------------------------------------------
+\newpage
+\singlespacing
+\section*{Referencias}
+\addcontentsline{toc}{section}{Referencias}
+\parindent=-0.5in
+\parskip=0in
+\parskip=0.3em
+
+% Referencias con hanging indent
+\begin{thebibliography}{99}
+
+% Artículo de revista con DOI
+\vspace{0.3em}
+Apellido, A. A., \& Apellido, B. B. (2024). Título del artículo.
+\textit{Revista}, \textit{vol}(núm), páginas. https://doi.org/xxxxx
+
+% Libro
+\vspace{0.3em}
+Apellido, A. A. (2023). \textit{Título del libro en cursiva} (2.$^a$ ed.).
+Editorial.
+
+% Capítulo de libro
+\vspace{0.3em}
+Apellido, A. A. (2023). Título del capítulo. En A. A. Apellido (Ed.),
+\textit{Título del libro} (pp. xx-xx). Editorial.
+
+% Tesis
+\vspace{0.3em}
+Apellido, A. A. (2023). \textit{Título de la tesis} [Tesis doctoral,
+Universidad]. Nombre del repositorio. URL
+
+% Página web
+\vspace{0.3em}
+Apellido, A. A. (2024). Título de la página. Nombre del sitio web.
+https://ejemplo.com
+
+\end{thebibliography}
+
+% --------------------------------------------------------------
+% Anexo A
+% --------------------------------------------------------------
+\newpage
+\section*{Anexo A}
+\addcontentsline{toc}{section}{Anexo A}
+\textbf{Título del anexo}. Descripción del contenido del anexo.
+
+% --------------------------------------------------------------
+% Anexo B
+% --------------------------------------------------------------
+\newpage
+\section*{Anexo B}
+\addcontentsline{toc}{section}{Anexo B}
+\textbf{Título del anexo}. Descripción del contenido del anexo.
+
+\end{document}

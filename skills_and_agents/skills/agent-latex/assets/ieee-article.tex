@@ -1,0 +1,181 @@
+% --------------------------------------------------------------
+% IEEE Article Template - LaTeX
+% --------------------------------------------------------------
+% Document class IEEEtran
+\documentclass[conference, a4paper]{IEEEtran}
+
+% Paquetes básicos
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{xcolor}
+
+% --------------------------------------------------------------
+% Title Block - IEEE Style
+% --------------------------------------------------------------
+\title{\LARGE\bfseries Título del Artículo en Formato IEEE}
+
+% Autor con afiliación
+\author{
+   ~\IEEEauthorblockN{Autor 1\IEEEauthorrefmark{1}}
+    \IEEEauthorblockA{\IEEEauthorrefmark{1}Universidad, Departamento\\
+    ciudad@universidad.edu}
+    \and
+    ~\IEEEauthorblockN{Autor 2\IEEEauthorrefmark{2}}
+    \IEEEauthorblockA{\IEEEauthorrefmark{2}Universidad, Departamento\\
+    autor2@universidad.edu}
+}
+
+\begin{document}
+
+\maketitle
+
+% --------------------------------------------------------------
+% Abstract - 150 a 250 palabras
+% --------------------------------------------------------------
+\begin{abstract}
+Este artículo presenta una investigación sobre [tema]. El estudio aborda [problema]
+mediante [método]. Los resultados demuestran que [hallazgo principal]. La metodología
+empleada consistió en [descripción]. Las conclusiones sugieren que [implicación].
+\end{abstract}
+
+% Keywords - IEEE style
+\begin{IEEEkeywords}
+Palabra clave 1, Palabra clave 2, Palabra clave 3, keyword4, keyword5
+\end{IEEEkeywords}
+
+% --------------------------------------------------------------
+% Introducción
+% --------------------------------------------------------------
+\section{Introducción}
+\label{sec:introduccion}
+La introducción debe presentar el problema de investigación, el contexto
+teórico y los objetivos del estudio~\cite{referencia1}.
+
+\subsection{Contexto}
+El contexto del problema se establece en esta sección.
+
+\subsection{Objetivos}
+Los objetivos del estudio son:
+\begin{itemize}
+    \item Objetivo general
+    \item Objetivo específico 1
+    \item Objetivo específico 2
+\end{itemize}
+
+% --------------------------------------------------------------
+% Marco Teórico
+% --------------------------------------------------------------
+\section{Marco Teórico}
+\label{sec:marco}
+La revisión de literatura debe ser actual y relevante~\cite{referencia2}.
+
+\subsection{Antecedentes}
+Se presentan los antecedentes del estudio.
+
+\subsection{Bases Teóricas}
+Las bases teóricas que sustentan la investigación.
+
+% --------------------------------------------------------------
+% Metodología
+% --------------------------------------------------------------
+\section{Metodología}
+\label{sec:metodologia}
+La sección de metodología describe el enfoque de investigación.
+
+\subsection{Diseño de Investigación}
+Se describe el diseño implementado.
+
+\subsection{Población y Muestra}
+La población y la técnica de muestreo utilizada.
+
+\subsection{Técnicas de Recolección de Datos}
+Las instrumentos de recolección de datos.
+
+% --------------------------------------------------------------
+% Resultados
+% --------------------------------------------------------------
+\section{Resultados}
+\label{sec:resultados}
+Los resultados se presentan de forma clara y objetiva.
+
+\subsection{Análisis Descriptivo}
+\begin{table}[htbp]
+\centering
+\caption{Resultados del Análisis Descriptivo}
+\label{tab:resultados}
+\begin{tabular}{lcc}
+\toprule
+Variable & Media & DE \\
+\midrule
+Variable 1 & 0.00 & 0.00 \\
+Variable 2 & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Análisis Inferencial}
+Los resultados del análisis inferencial.
+
+% --------------------------------------------------------------
+% Discusión
+% --------------------------------------------------------------
+\section{Discusión}
+\label{sec:discusion}
+La discusión interpreta los resultados a la luz de la teoría~\cite{referencia3}.
+
+% --------------------------------------------------------------
+% Conclusión
+% --------------------------------------------------------------
+\section{Conclusión}
+\label{sec:conclusion}
+Las conclusiones del estudio son:
+
+\begin{itemize}
+    \item Conclusión 1
+    \item Conclusión 2
+    \item Conclusión 3
+\end{itemize}
+
+% --------------------------------------------------------------
+% Referencias - Formato IEEE
+% --------------------------------------------------------------
+\section{Referencias}
+Las referencias se numeran correlativamente en orden de aparición.
+
+\begin{thebibliography}{00}
+
+% Artículo de revista
+bibitem{referencia1}
+A.~Autor, ``Título del artículo,'' \emph{Revista}, vol. 1, núm. 1, pp. 1--10, 2024.
+
+% Libro
+bibitem{referencia2}
+A.~Autor, \emph{Título del libro}, 2.$^a$ ed. Ciudad: Editorial, 2023.
+
+% Ponencia en conferencia
+bibitem{referencia3}
+A.~Autor, ``Título de la ponenci,'' en \emph{Proc. Conferencia}, 2023, pp. 1--5.
+
+% Tesis
+bibitem{referencia4}
+A.~Autor, ``Título de la tesis,'' Ph.D. dissertation, Univ., Ciudad, 2023.
+
+% Página web
+bibitem{referencia5}
+A.~Autor. (2024). Título de la página. [En línea]. Disponible: https://ejemplo.com
+
+\end{thebibliography}
+
+% --------------------------------------------------------------
+% Anexo (opcional)
+% --------------------------------------------------------------
+\section{Anexo}
+\label{anexo}
+Información adicional.
+
+\end{document}
