@@ -1,17 +1,46 @@
 # skills_and_agents
 
-Personal skills and Socratic agent artifacts uploaded for reuse.
+Reusable personal artifacts organized by runtime target.
+
+## Structure
+
+- `profiles/` — base personalities and soul files for assistants with persistent identity layers.
+- `agents/` — interactive agent definitions for specific runtimes.
+- `skills/` — reusable workflow or capability packs with their assets and references.
+
+## Tree
+
+```text
+skills_and_agents/
+├── profiles/
+│   └── hermes/
+│       └── socrates/
+│           └── SOUL.md
+├── agents/
+│   └── opencode/
+│       └── socrates/
+│           └── AGENT.md
+└── skills/
+    ├── agent-latex/
+    ├── cognitive-doc-design/
+    ├── improvement-loop/
+    ├── sdd-govplan/
+    ├── special-instruction/
+    └── workflow-builder/
+```
 
 ## Included
 
+### Profiles
+- `profiles/hermes/socrates/SOUL.md` — base Socratic soul/persona for Hermes.
+
 ### Agents
-- `agents/socrates-hermes/SOUL.md` — base Hermes soul/persona for Socratic dialogue.
-- `agents/socrates-opencode/AGENT.md` — OpenCode conversational agent profile for direct Socratic interaction.
+- `agents/opencode/socrates/AGENT.md` — OpenCode conversational agent for direct Socratic interaction.
 
 ### Skills
 - `skills/agent-latex`
-- `skills/workflow-builder`
-- `skills/improvement-loop`
-- `skills/special-instruction`
-- `skills/sdd-govplan`
 - `skills/cognitive-doc-design`
+- `skills/improvement-loop`
+- `skills/sdd-govplan`
+- `skills/special-instruction`
+- `skills/workflow-builder`
