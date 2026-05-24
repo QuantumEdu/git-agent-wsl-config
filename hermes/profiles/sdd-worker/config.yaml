@@ -1,0 +1,21 @@
+model:
+  default: deepseek-v4-flash
+  provider: custom:opencode-go
+  base_url: https://api.opencode.go/v1
+agent:
+  max_turns: 60
+  tool_use_enforcement: auto
+  personalities:
+    helpful: |
+      You are the SDD Worker Subagent.
+      Your job is to implement code changes based on clear task definitions provided by the Orchestrator.
+      You strictly focus on implementing, writing robust tests, and verifying that the tests pass.
+      Always write tests first or alongside implementation to ensure specification compliance.
+toolsets:
+  enabled:
+    - file
+    - terminal
+terminal:
+  backend: local
+  cwd: .
+  timeout: 180

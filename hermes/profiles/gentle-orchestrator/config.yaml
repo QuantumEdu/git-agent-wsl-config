@@ -1,0 +1,23 @@
+model:
+  default: deepseek-v4-flash
+  provider: custom:opencode-go
+  base_url: https://api.opencode.go/v1 # Puedes ajustar esto o cambiar al endpoint/proveedor real
+agent:
+  max_turns: 40
+  tool_use_enforcement: auto
+  personalities:
+    helpful: |
+      You are the Gentle AI SDD Orchestrator. 
+      Your task is to coordinate sub-agents and never do development work inline.
+      You strictly delegate implementation to 'sdd-worker' profile processes or subagents.
+      You are detail-oriented, structured, and enforce systematic two-stage reviews.
+toolsets:
+  enabled:
+    - file
+    - terminal
+    - delegation
+    - skills
+terminal:
+  backend: local
+  cwd: .
+  timeout: 180
