@@ -216,25 +216,29 @@ Este archivo define comandos de compilación/test e instrucciones de estilo para
     conn.close()
     print("[INFO] Sincronización de contexto completada con éxito.")
 
-    # Sincronización local con el repositorio git-agent-wsl-config (sin git commit automático)
+    # Sincronización con el repositorio git-agent-wsl-config
     git_repo_path = "/home/hermes/git-agent-wsl-config"
     if os.path.exists(git_repo_path):
-        print("[INFO] Copiando compilación a git-agent-wsl-config para sincronización diferida...")
+        print("[INFO] Sincronizando compilación con git-agent-wsl-config...")
         import subprocess
         try:
-            # Asegurarse de que existan los directorios destino
-            os.makedirs(f"{git_repo_path}/config", exist_ok=True)
             # Copiar los archivos compilados al repo
             subprocess.run(f"cp -r {quantum_dir}/identity {git_repo_path}/config/", shell=True, check=True)
             subprocess.run(f"cp -r {quantum_dir}/projects {git_repo_path}/config/", shell=True, check=True)
-            if os.path.exists(f"{quantum_dir}/knowledge"):
-                subprocess.run(f"cp -r {quantum_dir}/knowledge {git_repo_path}/config/", shell=True, check=True)
-            # Copiar el compilador de contexto actualizado al repo si existe en quantum_dir
-            if os.path.exists(f"{quantum_dir}/context_compiler.py"):
-                subprocess.run(f"cp {quantum_dir}/context_compiler.py {git_repo_path}/config/", shell=True, check=True)
-            print("[SUCCESS] Archivos copiados a git-agent-wsl-config. El commit/push se realizará de forma diferida.")
+            subprocess.run(f"cp -r {quantum_dir}/knowledge {git_repo_path}/config/", shell=True, check=True)
+            subprocess.run(f"cp {quantum_dir}/context_compiler.py {git_repo_path}/config/", shell=True, check=True)
+            
+            # Verificar cambios en el git repo
+            status_res = subprocess.run(["git", "-C", git_repo_path, "status", "--porcelain"], capture_output=True, text=True, check=True)
+            if status_res.stdout.strip():
+                print("[INFO] Cambios significativos detectados. Realizando commit...")
+                subprocess.run(["git", "-C", git_repo_path, "add", "config/identity", "config/projects", "config/knowledge", "config/context_compiler.py"], check=True)
+                subprocess.run(["git", "-C", git_repo_path, "commit", "-m", "chore: updates compiled from engram"], check=True)
+                print("[SUCCESS] Commit realizado en git-agent-wsl-config.")
+            else:
+                print("[INFO] No se detectaron cambios significativos para realizar commit.")
         except Exception as e:
-            print(f"[ERROR] Error al copiar los archivos al repositorio: {e}")
+            print(f"[ERROR] Error durante la sincronización git: {e}")
 
 
 if __name__ == "__main__":
