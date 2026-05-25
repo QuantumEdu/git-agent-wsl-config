@@ -23,6 +23,7 @@ def compile_context():
     has_observations = cursor.fetchone() is not None
 
     recent_preferences = []
+    project_preferences = {}
     recent_life_context = []
     project_updates = {}
 
@@ -42,7 +43,13 @@ def compile_context():
             
             # Clasificar por tipo/destino
             if o_type in ['preference', 'interaction_rule', 'rule']:
-                recent_preferences.append(f"- **{o_title}**: {o_content} *(Actualizado: {o_updated})*")
+                pref_str = f"- **{o_title}**: {o_content} *(Actualizado: {o_updated})*"
+                if o_project == "global":
+                    recent_preferences.append(pref_str)
+                else:
+                    if o_project not in project_preferences:
+                        project_preferences[o_project] = []
+                    project_preferences[o_project].append(pref_str)
             elif o_type in ['life_context', 'goal', 'habit', 'personal']:
                 recent_life_context.append(f"- **{o_title}**: {o_content} *(Actualizado: {o_updated})*")
             elif o_type in ['bugfix', 'discovery', 'decision', 'session_summary']:
@@ -132,7 +139,7 @@ Bloqueador: Ninguno."""
         if os.path.exists(context_path):
             with open(context_path, "r") as f:
                 content = f.read()
-            match = re.search(r"## TL;DR.*?(?=\n---|\Z)", content, re.DOTALL)
+            match = re.search(r"## TL;DR.*?(?=\n---|\\Z)", content, re.DOTALL)
             if match:
                 tldr_section = match.group(0).strip()
 
@@ -148,6 +155,63 @@ Bloqueador: Ninguno."""
         with open(context_path, "w") as f:
             f.write(new_context)
         print(f"[SUCCESS] CONTEXT.md compilado para {project}.")
+
+        # 5. Generar .cursorrules para el proyecto
+        cursorrules_path = os.path.join(proj_dir, ".cursorrules")
+        
+        # Combinar preferencias globales y del proyecto
+        combined_rules = []
+        combined_rules.extend(recent_preferences[:10])
+        if project in project_preferences:
+            combined_rules.extend(project_preferences[project][:10])
+            
+        cursorrules_content = f"""# .cursorrules - Configuración de Cursor para {project.title()}
+
+## Directrices del Proyecto
+- Carpeta del Proyecto: `/home/hermes/.quantum-os/projects/{project}`
+- Organización: Método PARA + ACE dentro de `/home/hermes/para_ace/`
+- Respuestas directas, técnicas y concisas. Sin saludos ni formalidades innecesarias.
+
+## Reglas de Codificación e Interacción
+- Utilizar siempre rutas absolutas para operaciones del sistema de archivos.
+- Verificar archivos existentes con herramientas de lectura antes de editar o escribir de cero.
+- Realizar llamadas a herramientas en paralelo siempre que sea posible.
+- Evitar etiquetas decorativas estilo `MEDIA:/path` si estás operando directamente en CLI.
+
+"""
+        if combined_rules:
+            cursorrules_content += "## Reglas Dinámicas Recientes (Desde Engram)\n"
+            cursorrules_content += "\n".join(combined_rules[:15]) + "\n\n"
+            
+        cursorrules_content += f"""## Instrucciones Específicas
+- Para cambios importantes, registrar decisiones en `DECISIONS.md`.
+- Mantener la sección TL;DR en `CONTEXT.md` siempre actualizada y concisa.
+"""
+        with open(cursorrules_path, "w") as f:
+            f.write(cursorrules_content)
+        print(f"[SUCCESS] .cursorrules generado para {project}.")
+
+        # 6. Generar CLAUDE.md para el proyecto
+        claude_path = os.path.join(proj_dir, "CLAUDE.md")
+        
+        # Intentamos deducir comandos básicos o mantener un estándar robusto
+        claude_content = f"""# CLAUDE.md - Guía de Desarrollo para Claude en {project.title()}
+
+Este archivo define comandos de compilación/test e instrucciones de estilo para el proyecto {project.title()}.
+
+## Comandos de Desarrollo Comunes
+- No hay comandos automáticos de compilación para este proyecto. Utilizar scripts en el directorio si existen.
+- Para verificar sintaxis de Python (si aplica): `python3 -m py_compile *.py`
+
+## Reglas de Estilo e Instrucciones
+1. **Comportamiento General**: Sé extremadamente conciso, técnico y directo.
+2. **Sistema de Archivos**: Siempre usa rutas absolutas en lugar de relativas.
+3. **Manejo de Errores**: Robustez primero. Si faltan recursos u observaciones, maneja el caso de manera segura y silenciosa o informando con [INFO]/[WARNING] sin lanzar excepciones.
+4. **Sincronización**: Mantener el contexto sincronizado a través de los archivos del proyecto (`CONTEXT.md`, `DECISIONS.md`).
+"""
+        with open(claude_path, "w") as f:
+            f.write(claude_content)
+        print(f"[SUCCESS] CLAUDE.md generado para {project}.")
 
     conn.close()
     print("[INFO] Sincronización de contexto completada con éxito.")

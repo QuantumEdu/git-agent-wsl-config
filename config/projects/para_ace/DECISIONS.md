@@ -2,6 +2,37 @@
 
 ## Registro Automático de Decisiones y Logros (Desde Engram)
 
+### [2026-05-24 23:45:49] Session summary (SESSION_SUMMARY)
+- **Detalle:** ## Goal
+Copy two recently created HTML files into the QuantumEdu/tuts repository and publish them.
+
+## Instructions
+- User asked first for the recent HTML files, then requested copying those two files into the repo's hermes directory, and finally explicitly authorized commit and push.
+
+## Discoveries
+- The two recent HTML files were in `1_PARA/Resources/` under the current workspace.
+- The target repo was not present locally, so it had to be cloned to `/home/hermes/tuts`.
+- The `hermes/` folder in the target repo already contained several tutorial HTML files.
+- Push access to `https://github.com/QuantumEdu/tuts` worked directly from the local clone.
+
+## Accomplished
+- ✅ Identified the two recent HTML files: `Guia_Prompts_Hermes.html` and `hermes-kanban-triage.html`.
+- ✅ Cloned `QuantumEdu/tuts` locally and created/verified the `hermes/` directory.
+- ✅ Copied both HTML files into `/home/hermes/tuts/hermes/`.
+- ✅ Committed the addition with `docs: add Hermes prompt and kanban HTML guides`.
+- ✅ Pushed commit `70ba6a7` to `origin/main`.
+
+## Next Steps
+- None required unless the user wants a PR, release note, or verification against GitHub UI.
+
+## Relevant Files
+- `1_PARA/Resources/Guia_Prompts_Hermes.html` — source HTML file copied into the target repo.
+- `1_PARA/Resources/hermes-kanban-triage.html` — source HTML file copied into the target repo.
+- `/home/hermes/tuts/hermes/Guia_Prompts_Hermes.html` — new published tutorial page in the target repo.
+- `/home/hermes/tuts/hermes/hermes-kanban-triage.html` — new published tutorial page in the target repo.
+
+---
+
 ### [2026-05-24 23:45:42] Pushed Hermes HTML guides to tuts main (DECISION)
 - **Detalle:** **What**: Committed and pushed two HTML files into the QuantumEdu/tuts repository under hermes/ on branch main.
 **Why**: The user explicitly requested uploading the copied Hermes HTML files to the repository.

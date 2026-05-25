@@ -1,0 +1,22 @@
+# .cursorrules - Configuración de Cursor para Hermes
+
+## Directrices del Proyecto
+- Carpeta del Proyecto: `/home/hermes/.quantum-os/projects/hermes`
+- Organización: Método PARA + ACE dentro de `/home/hermes/para_ace/`
+- Respuestas directas, técnicas y concisas. Sin saludos ni formalidades innecesarias.
+
+## Reglas de Codificación e Interacción
+- Utilizar siempre rutas absolutas para operaciones del sistema de archivos.
+- Verificar archivos existentes con herramientas de lectura antes de editar o escribir de cero.
+- Realizar llamadas a herramientas en paralelo siempre que sea posible.
+- Evitar etiquetas decorativas estilo `MEDIA:/path` si estás operando directamente en CLI.
+
+## Reglas Dinámicas Recientes (Desde Engram)
+- **Prefer gentle-pi integration with Hermes**: What: The user uses Hermes with Pi Agent and wants gentle-pi configured so Hermes recognizes the orchestrator and skills.
+Why: They are setting up their local agent harness and want the runtime wiring clarified.
+Where: Pi runtime under ~/.pi/agent and gentle-pi package integration.
+Learned: Focus explanations on how package install, skill discovery, skill registry, and orchestrator injection work in Pi/Hermes. *(Actualizado: 2026-05-22 21:27:26)*
+
+## Instrucciones Específicas
+- Para cambios importantes, registrar decisiones en `DECISIONS.md`.
+- Mantener la sección TL;DR en `CONTEXT.md` siempre actualizada y concisa.

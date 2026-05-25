@@ -1,0 +1,16 @@
+# .cursorrules - Configuración de Cursor para Personal
+
+## Directrices del Proyecto
+- Carpeta del Proyecto: `/home/hermes/.quantum-os/projects/personal`
+- Organización: Método PARA + ACE dentro de `/home/hermes/para_ace/`
+- Respuestas directas, técnicas y concisas. Sin saludos ni formalidades innecesarias.
+
+## Reglas de Codificación e Interacción
+- Utilizar siempre rutas absolutas para operaciones del sistema de archivos.
+- Verificar archivos existentes con herramientas de lectura antes de editar o escribir de cero.
+- Realizar llamadas a herramientas en paralelo siempre que sea posible.
+- Evitar etiquetas decorativas estilo `MEDIA:/path` si estás operando directamente en CLI.
+
+## Instrucciones Específicas
+- Para cambios importantes, registrar decisiones en `DECISIONS.md`.
+- Mantener la sección TL;DR en `CONTEXT.md` siempre actualizada y concisa.
